@@ -28,7 +28,7 @@ public class Controller {
         boolean us = Pattern.matches("\\d{5,8}",userNum);
         if(us&&pwd != null&& !pwd.equals("")){
             String data = User.toJson(userNum,pwd);
-            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN,0,null,null, DateUtil.dateFactory(),data);
+            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN,0,"0","0", DateUtil.dateFactory(),data);
             IMSend.send(imRequest);
         }
 //        actionTaget.setText("hjaknmc");

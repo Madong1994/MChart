@@ -1,5 +1,6 @@
 package sample;
 
+import im.IMClientStarter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        IMClientStarter.startIm();
         Parent root = FXMLLoader.load(getClass().getResource("../view/sample.fxml"));
         primaryStage.setTitle("MChart");
         primaryStage.setScene(new Scene(root, 400, 375));
