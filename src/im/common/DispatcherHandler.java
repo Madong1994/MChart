@@ -1,17 +1,22 @@
 package im.common;
 
 
+import com.jfinal.log.Log;
+import im.common.handlers.BaseHandler;
+import im.common.interceptor.BaseInterceptor;
 import im.common.interceptor.HandlerInterceptor;
 import im.common.protof.RequestModel;
+import im.common.protof.ResponseModel;
 import im.common.util.annotation.IMInterceptor;
 import im.common.util.annotation.IMRequest;
 import im.common.util.tool.ClassScaner;
 import org.tio.core.ChannelContext;
-import sun.rmi.runtime.Log;
+
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.List;
 
 ;
 
@@ -35,7 +40,7 @@ public class DispatcherHandler {
 
     private static List<Class<BaseHandler>> BaseHandleImplClassList = ClassScaner.scanSubClass(BaseHandler.class);
 
-    public static String handler(RequestModel.ImRequest imRequest, ChannelContext<Object, IMPacket, Object> channelContext) {
+    public static String handler(ResponseModel.ImResponse imResponse, ChannelContext<Object, IMPacket, Object> channelContext) {
         if (BaseHandleImplClassList != null) {
             for (Class<?> impl : BaseHandleImplClassList) {
                 IMRequest annotation = impl.getAnnotation(IMRequest.class);
@@ -48,12 +53,12 @@ public class DispatcherHandler {
                             interThrows();
                             HandlerInterceptor handlerInterceptor = new HandlerInterceptor(baseHandle,b_interceptor);
                             BaseHandler baseHandle1 = (BaseHandler) Proxy.newProxyInstance(handlerInterceptor.getClass().getClassLoader(),baseHandle.getClass().getInterfaces(),handlerInterceptor);
-                            return baseHandle1.init(imRequest, channelContext);
+                            return baseHandle1.init(imResponse, channelContext);
                         }else {
                             //没有使用拦截器
                             Method method = impl.getMethod("init", RequestModel.ImRequest.class, ChannelContext.class);
                             Object object = impl.newInstance();
-                            return (String) method.invoke(object, imRequest, channelContext);
+                            return (String) method.invoke(object, imResponse, channelContext);
                         }
 
                     } catch (NoSuchMethodException e) {

@@ -3,6 +3,7 @@ package im;
 
 //import com.base.utils.GZipUtil;
 
+import im.common.DispatcherHandler;
 import im.common.IMAbsAioHandler;
 import im.common.IMPacket;
 import im.common.protof.ResponseModel;
@@ -21,11 +22,13 @@ public class IMClientAioHandler extends IMAbsAioHandler implements ClientAioHand
 		if (body != null)
 		{
 			ResponseModel.ImResponse imResponse = ResponseModel.ImResponse.parseFrom(body);
-//			String str = new String(body, IMPacket.CHARSET);
-			System.out.println("收到消息handler：" +  imResponse.getObjectJson());
+//			if (imRequest.getHandler() == HandlerCode.REQUEST) {
+//			registInterceptor(imRequest);
+			DispatcherHandler.handler(imResponse, channelContext);
 		}
 
 		return null;
+
 	}
 
 	private static IMPacket heartbeatPacket = new IMPacket();
