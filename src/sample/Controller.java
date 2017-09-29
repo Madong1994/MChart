@@ -2,6 +2,7 @@ package sample;
 
 import entity.User;
 import im.common.protof.RequestModel;
+import im.common.util.HandlerCode;
 import im.common.util.RequestCode;
 import im.common.util.tool.DateUtil;
 import im.common.util.tool.IMSend;
@@ -28,7 +29,7 @@ public class Controller {
         boolean us = Pattern.matches("\\d{5,8}",userNum);
         if(us&&pwd != null&& !pwd.equals("")){
             String data = User.toJson(userNum,pwd);
-            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN,0,"0","0", DateUtil.dateFactory(),data);
+            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),data);
             IMSend.send(imRequest);
         }
 //        actionTaget.setText("hjaknmc");
