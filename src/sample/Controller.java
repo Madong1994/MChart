@@ -32,6 +32,6 @@ public class Controller {
             RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),data);
             IMSend.send(imRequest);
         }
-//        actionTaget.setText("hjaknmc");
+        actionTaget.setText("hjaknmc");
     }
 }

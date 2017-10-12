@@ -5,13 +5,11 @@ import com.jfinal.log.Log;
 import im.common.handlers.BaseHandler;
 import im.common.interceptor.BaseInterceptor;
 import im.common.interceptor.HandlerInterceptor;
-import im.common.protof.RequestModel;
 import im.common.protof.ResponseModel;
 import im.common.util.annotation.IMInterceptor;
-import im.common.util.annotation.IMRequest;
+import im.common.util.annotation.IMResponse;
 import im.common.util.tool.ClassScaner;
 import org.tio.core.ChannelContext;
-
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -43,7 +41,7 @@ public class DispatcherHandler {
     public static String handler(ResponseModel.ImResponse imResponse, ChannelContext<Object, IMPacket, Object> channelContext) {
         if (BaseHandleImplClassList != null) {
             for (Class<?> impl : BaseHandleImplClassList) {
-                IMRequest annotation = impl.getAnnotation(IMRequest.class);
+                IMResponse annotation = impl.getAnnotation(IMResponse.class);
                 IMInterceptor interceptor = impl.getAnnotation(IMInterceptor.class);
                 if (null != annotation) {
                     try {
@@ -56,7 +54,7 @@ public class DispatcherHandler {
                             return baseHandle1.init(imResponse, channelContext);
                         }else {
                             //没有使用拦截器
-                            Method method = impl.getMethod("init", RequestModel.ImRequest.class, ChannelContext.class);
+                            Method method = impl.getMethod("init", ResponseModel.ImResponse.class, ChannelContext.class);
                             Object object = impl.newInstance();
                             return (String) method.invoke(object, imResponse, channelContext);
                         }
