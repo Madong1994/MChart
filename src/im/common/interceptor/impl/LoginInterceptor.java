@@ -11,15 +11,24 @@ import org.tio.core.ChannelContext;
  */
 public class LoginInterceptor implements BaseInterceptor {
     private static final Log log = Log.getLog(LoginInterceptor.class);
+    private Object ocompent = null;
+    private String result = "";
     @Override
-    public void before(ChannelContext<Object, IMPacket, Object> channelContext) {
+    public Object before(ChannelContext<Object, IMPacket, Object> channelContext) {
         log.info("---wozai--before--");
         System.out.println("---wozai--before--");
+        return ocompent;
     }
-
+    public void setOcompent(Object ocompent){
+        this.ocompent = ocompent;
+    }
     @Override
-    public void after(ChannelContext<Object, IMPacket, Object> channelContext) {
+    public void after(ChannelContext<Object, IMPacket, Object> channelContext,String resultStr) {
         log.info("---wozai--after--");
-        System.out.println("---wozai--after--");
+        System.out.println("---wozai--after--"+resultStr);
+        result = resultStr;
+    }
+    public String getResult(){
+        return result;
     }
 }

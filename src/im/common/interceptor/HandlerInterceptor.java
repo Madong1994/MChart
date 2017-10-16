@@ -32,10 +32,10 @@ public class HandlerInterceptor implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("befor---------->HandlerInterceptor");
-        interceptor.before((ChannelContext<Object, IMPacket, Object>)args[1]);
-        String str = (String) method.invoke(object,args[0],args[1]);
-        interceptor.after((ChannelContext<Object, IMPacket, Object>)args[1]);
-        System.out.println("after---------->HandlerInterceptor"+str);
+        Object ocompemt = interceptor.before((ChannelContext<Object, IMPacket, Object>)args[1]);
+        String resultStr = (String) method.invoke(object,args[0],args[1],ocompemt);
+        interceptor.after((ChannelContext<Object, IMPacket, Object>)args[1],resultStr);
+        System.out.println("after---------->HandlerInterceptor"+resultStr);
         return null;
     }
 }

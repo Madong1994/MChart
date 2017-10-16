@@ -2,7 +2,6 @@ package im.common.handlers;
 
 
 import im.common.IMPacket;
-import im.common.protof.RequestModel;
 import im.common.protof.ResponseModel;
 import org.tio.core.ChannelContext;
 
@@ -21,5 +20,5 @@ import org.tio.core.ChannelContext;
  * 注意：本内容仅限于华夏九鼎内部传阅，禁止外泄以及用于其他的商业目的
  */
 public interface BaseHandler {
-    String init(ResponseModel.ImResponse imResponse, ChannelContext<Object, IMPacket, Object> channelContext);
+    String init(ResponseModel.ImResponse imResponse, ChannelContext<Object, IMPacket, Object> channelContext,Object ocompent);
 }

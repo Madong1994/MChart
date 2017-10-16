@@ -9,6 +9,6 @@ import org.tio.core.ChannelContext;
  * 其他拦截器实现此基本拦截器接口
  */
 public interface BaseInterceptor {
-    public void before(ChannelContext<Object, IMPacket, Object> channelContext);
-    public void after(ChannelContext<Object, IMPacket, Object> channelContext);
+    public Object before(ChannelContext<Object, IMPacket, Object> channelContext);
+    public void after(ChannelContext<Object, IMPacket, Object> channelContext,String resultStr);
 }

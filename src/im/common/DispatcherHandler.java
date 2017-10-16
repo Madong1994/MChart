@@ -51,7 +51,7 @@ public class DispatcherHandler {
                             interThrows();
                             HandlerInterceptor handlerInterceptor = new HandlerInterceptor(baseHandle,b_interceptor);
                             BaseHandler baseHandle1 = (BaseHandler) Proxy.newProxyInstance(handlerInterceptor.getClass().getClassLoader(),baseHandle.getClass().getInterfaces(),handlerInterceptor);
-                            return baseHandle1.init(imResponse, channelContext);
+                            return baseHandle1.init(imResponse, channelContext,null);
                         }else {
                             //没有使用拦截器
                             Method method = impl.getMethod("init", ResponseModel.ImResponse.class, ChannelContext.class);
