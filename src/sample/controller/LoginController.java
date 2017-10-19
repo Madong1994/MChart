@@ -1,4 +1,4 @@
-package sample;
+package sample.controller;
 
 import entity.User;
 import im.common.interceptor.impl.LoginInterceptor;
@@ -13,10 +13,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import sample.StageController;
+import sample.util.ControllerdStage;
 
 import java.util.regex.Pattern;
 
-public class Controller {
+public class LoginController implements ControllerdStage {
+    private StageController stageController;
     @FXML
     private Text actionTaget;
     @FXML
@@ -40,5 +43,12 @@ public class Controller {
     }
     public Text getActionTaget(){
         return actionTaget;
+    }
+    public StageController getStageController(){
+        return stageController;
+    }
+    @Override
+    public void setStageController(StageController controller) {
+        this.stageController = controller;
     }
 }
