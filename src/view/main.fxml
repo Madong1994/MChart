@@ -1,39 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 
-<GridPane alignment="center" hgap="10" prefHeight="371.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
-    <padding><Insets bottom="10" left="25" right="25" top="25" /> </padding>
-    <Text text="Welcome MyChart!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-    <Label text="User Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <TextField fx:id="userIdTarg" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <HBox alignment="BOTTOM_RIGHT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-    <Text fx:id="actionTaget" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-
-    <stylesheets>
-        <!--<URL value="css/@login.css" />-->
-    </stylesheets>
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
-
-</GridPane>
+<Pane maxHeight="600" maxWidth="1200" minHeight="450" minWidth="900" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+   <children>
+      <Region layoutX="410.0" layoutY="355.0" prefHeight="81.0" prefWidth="81.0" />
+      <Canvas height="200.0" layoutX="359.0" layoutY="80.0" width="200.0" />
+   </children>
+</Pane>

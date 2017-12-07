@@ -15,4 +15,7 @@ public class Stages {
 
     public static String mainViewID = "MainController";
     public static String mainView = "main.fxml";
+
+    public static String mwindow = "MWindow";
+//    public static String mainView = "main.fxml";
 }

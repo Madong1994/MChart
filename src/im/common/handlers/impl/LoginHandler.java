@@ -31,7 +31,7 @@ public class LoginHandler implements BaseHandler {
 
             Platform.runLater(new Runnable() {
                 public void run() {
-                    stageController.setStage(Stages.mainViewID,Stages.loginViewID);
+                    stageController.setStage(Stages.mwindow,Stages.loginViewID);
                 }
             });
 

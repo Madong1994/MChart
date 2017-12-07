@@ -5,8 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.compoment.MWindow;
 import sample.util.ControllerdStage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +31,20 @@ public class StageController {
      */
     public void setPrimaryStage(String primaryStageName, Stage primaryStage){
         this.addStage(primaryStageName,primaryStage);
+    }
+
+    /**
+     * 添加自定义窗口
+     * @param id
+     * @param childPain
+     * @return
+     */
+    public boolean loadStage(String id,Pane childPain){
+        Scene compent = new Scene(childPain,childPain.getWidth(),childPain.getHeight());
+        Stage tempStage = new Stage();
+        tempStage.setScene(compent);
+        this.addStage(id,tempStage);
+        return true;
     }
     public boolean loadStage(String name, String resources, StageStyle... styles){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(resources));
@@ -54,6 +70,35 @@ public class StageController {
             e.printStackTrace();
             return false;
         }
+
+    }
+
+    /**
+     * 加载新窗口
+     * @param name
+     * @return
+     */
+    public boolean loadStage(String name){
+
+        Dimension screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int)screensize.getWidth();
+        int height = (int)screensize.getHeight();
+//            Pane tempPane = (Pane) loader.load();
+        //通过Loader获取FXML对应的ViewCtr，并将本StageController注入到ViewCtr中
+        MWindow mWindow = new MWindow(width,height);
+
+        //构造对应的Stage
+        Scene tempScene = new Scene(mWindow);
+        Stage tempStage = new Stage();
+        tempStage.setScene(tempScene);
+
+        //配置initStyle
+//            for(StageStyle style:styles){
+//                tempStage.initStyle(style);
+//            }
+        //将设置好的Stage放到HashMap中
+        this.addStage(name,tempStage);
+        return true;
 
     }
 
