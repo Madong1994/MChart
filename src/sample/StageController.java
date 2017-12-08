@@ -16,12 +16,21 @@ import java.util.Map;
 
 public class StageController {
     private Map<String,Stage> stageMap = new HashMap<String, Stage>();
+    private Map<String,Pane> paneMap = new HashMap<String, Pane>();
 
     public void addStage(String name,Stage stage){
         stageMap.put(name,stage);
     }
     public Stage getStage(String name){
         return stageMap.get(name);
+    }
+
+    public Pane getPane(String name) {
+        return paneMap.get(name);
+    }
+
+    public void addPane(String nema,Pane pane) {
+        this.paneMap.put(nema,pane);
     }
 
     /**
@@ -86,7 +95,7 @@ public class StageController {
 //            Pane tempPane = (Pane) loader.load();
         //通过Loader获取FXML对应的ViewCtr，并将本StageController注入到ViewCtr中
         MWindow mWindow = new MWindow(width,height);
-
+        this.addPane(name,mWindow);
         //构造对应的Stage
         Scene tempScene = new Scene(mWindow);
         Stage tempStage = new Stage();

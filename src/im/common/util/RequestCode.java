@@ -16,4 +16,9 @@ package im.common.util;
  */
 public interface RequestCode {
     public static int LOGIN = 0;//登录
+
+    public static int GET_FRENDS = 1;//获得好友
+
+    public static int SEND_MSG = 10;//发送消息
+
 }

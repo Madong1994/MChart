@@ -1,11 +1,15 @@
 package sample.compoment;
 
+import entity.User;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import sample.util.MsgContent;
 import sample.util.MsgContentUtil;
 
 import java.util.ArrayList;
@@ -41,10 +45,10 @@ public class MVBox extends VBox {
     public void init(){
 
     }
-    public void addFreads(List<String> frends){
+    public void addFriends(List<User> frends){
         this.getChildren().addAll(addBoxs(frends));
     }
-    private List<HBox> addBoxs(List<String> frends){
+    private List<HBox> addBoxs(final List<User> frends){
         this.setSpacing(3);
         HBox hBox = null;
         List<HBox> hBoxes = new ArrayList<>();
@@ -61,17 +65,38 @@ public class MVBox extends VBox {
             Random random = new Random();
             int ra1 = random.nextInt(4);
             Button child = new Button();
+            final int a = i;
             child.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    Tab tab = MsgContentUtil.creatTab("我的","123458");
+                    Tab tab = MsgContentUtil.creatTab(frends.get(a).getUserName(),frends.get(a).getUserName());
                     chatPane.getTabPane().getTabs().add(tab);
                 }
             });
 //            child.setOpacity(0.4);
 //            Image imageOk = new Image(getClass().getResourceAsStream("../../view/img/timg.jpg"));
 //            child.setGraphic(new ImageView(imageOk));
-            child.setText("chiled");
+            if(frends.get(i).getUserNum().equals("100000")){
+                Tab tab = MsgContentUtil.creatTab(frends.get(i).getUserName(),frends.get(i).getUserNum());
+                chatPane.getTabPane().getTabs().add(tab);
+                ObservableList<MsgContent> contents = MsgContentUtil.getDataMap("100000");
+                MsgContent welComeContent = new MsgContent();
+                welComeContent.setSender(frends.get(i).getUserName());
+
+                welComeContent.setContent("欢迎使用 马东 编写的聊天系统!");
+                welComeContent.setPaint(Color.LIGHTSEAGREEN);
+                welComeContent.setMsgType("TEXT");
+                MsgContent content = new MsgContent();
+                content.setSender(frends.get(i).getUserName());
+
+                content.setContent("服务器链接成功!");
+                content.setPaint(Color.RED);
+                content.setMsgType("TEXT");
+                contents.add(content);
+                contents.add(welComeContent);
+            }
+
+            child.setText(frends.get(i).getUserName());
 //            child.setTextFill(Paint.valueOf("rgba(17, 145,  213)"));
             child.setStyle(colors[ra1]);
             child.setPrefSize(width/2-3,height/6);

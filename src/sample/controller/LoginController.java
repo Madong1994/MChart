@@ -1,7 +1,7 @@
 package sample.controller;
 
 import entity.User;
-import im.common.interceptor.impl.LoginInterceptor;
+import im.common.interceptor.impl.GeneralInterceptor;
 import im.common.protof.RequestModel;
 import im.common.util.HandlerCode;
 import im.common.util.RequestCode;
@@ -34,10 +34,10 @@ public class LoginController implements ControllerdStage {
         if(us&&pwd != null&& !pwd.equals("")){
             String data = User.toJson(userNum,pwd);
             RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),data);
-            LoginInterceptor loginInterceptor = new LoginInterceptor();
-            loginInterceptor.setOcompent(this);
-            IMSend.send(imRequest,loginInterceptor);
-            String result = loginInterceptor.getResult();
+            GeneralInterceptor generalInterceptor = new GeneralInterceptor();
+            generalInterceptor.setOcompent(this);
+            IMSend.send(imRequest, generalInterceptor);
+            String result = generalInterceptor.getResult();
         }
 //        actionTaget.setText("hjaknmc");
     }

@@ -7,6 +7,15 @@ import com.alibaba.fastjson.JSONObject;
 public class ResultMsg {
     private int resultCode;
     private String resultMsg;
+    private String object;
+
+    public String getObject() {
+        return object;
+    }
+
+    public void setObject(String object) {
+        this.object = object;
+    }
 
     public int getResultCode() {
         return resultCode;
@@ -24,7 +33,7 @@ public class ResultMsg {
         this.resultMsg = resultMsg;
     }
 
-    public static ResultMsg toResultMsg(String msgJson){
+    public static ResultMsg toResultMsg(String msgJson,Object obj){
         JSONObject object = JSON.parseObject(msgJson);
         int resultCode = object.getInteger("resultCode");
         String resultMsg = object.getString("resultMsg");

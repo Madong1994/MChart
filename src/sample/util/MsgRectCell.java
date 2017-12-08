@@ -26,15 +26,17 @@ public class MsgRectCell extends ListCell<MsgContent> {
         super.updateItem(msgContent, b);
         Label labelSender = new Label();
         labelSender.setPrefSize(width, height/27);
-        labelSender.setStyle("-fx-text-fill: rgb(24, 24, 24);-fx-font-size: 150%;");
+        labelSender.setStyle("-fx-text-fill: rgb(16, 12, 255);-fx-font-size: 130%;");
         Label labelContext = new Label();
-        labelContext.setStyle("-fx-text-fill: rgb(122, 114, 124);-fx-font-size: 120%");
+        labelContext.setStyle("-fx-font-size: 120%");
+//        labelContext.setTextFill(Color.RED);
         labelContext.setPrefSize(width,2*height/27);
         VBox vBox = new VBox();
         vBox.getChildren().addAll(labelSender,labelContext);
         if (msgContent != null) {
 //                rect.setFill(Color.web(item));
             labelSender.setText(msgContent.getSender());
+            labelContext.setTextFill(msgContent.getPaint());
             labelContext.setText(msgContent.getContent());
             setGraphic(vBox);
         }

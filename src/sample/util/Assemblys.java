@@ -1,11 +1,13 @@
 package sample.util;
 
+import entity.TextMessage;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 /**
@@ -94,14 +96,23 @@ public class Assemblys {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 MsgContent msgContent = new MsgContent();
+                //todo 缺少发送者
                 msgContent.setSender("me");
                 msgContent.setContent(msg.getText());
                 msg.clear();
                 System.out.println("---"+msg.getText());
                 ObservableList<MsgContent> observableList = MsgContentUtil.getDataMap(userNum);
                 System.out.println(observableList);
+                msgContent.setPaint(Color.YELLOWGREEN);
                 observableList.add(msgContent);
                 MsgContentUtil.getAssemblysMap(userNum).msgContentListView.scrollTo(observableList.size());
+
+                TextMessage textMessage = new TextMessage();
+                textMessage.setMsgType("TEXT");
+//                textMessage.setMsg();
+                //todo 发送消息没有写
+//                RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.SEND_MSG, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),user.getUserNum());
+//                IMSend.send();
             }
         });
 

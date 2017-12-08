@@ -47,18 +47,18 @@ public class User implements Serializable{
         this.pwd = pwd;
     }
     public static String toJson(String userNum,String pwd){
-        User user = new User();
-        user.setUserNum(userNum);
-        user.setPwd(pwd);
-        return JSON.toJSONString(user);
+        User User = new User();
+        User.setUserNum(userNum);
+        User.setPwd(pwd);
+        return JSON.toJSONString(User);
     }
     public static User toUser(String userJson){
         JSONObject object = JSON.parseObject(userJson);
         String userNum = object.getString("userNum");
         String pwd = object.getString("pwd");
-        User user = new User();
-        user.setUserNum(userNum);
-        user.setPwd(pwd);
-        return user;
+        User User = new User();
+        User.setUserNum(userNum);
+        User.setPwd(pwd);
+        return User;
     }
 }

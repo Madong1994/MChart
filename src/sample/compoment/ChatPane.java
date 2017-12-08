@@ -2,9 +2,11 @@ package sample.compoment;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -34,10 +36,7 @@ public class ChatPane extends BorderPane{
         this.tabPane = tabPane;
     }
 
-    ObservableList<String> data = FXCollections.observableArrayList(
-            "chocolate", "salmon", "gold", "coral", "darkorchid",
-            "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
-            "blueviolet", "brown");
+    ObservableList<String> data = FXCollections.observableArrayList();
 
     private ListView<String> listView;
 
@@ -97,16 +96,16 @@ public class ChatPane extends BorderPane{
         MsgContentUtil.width = width;
         MsgContentUtil.height =height;
         MsgContentUtil.initializationMap();
-        Tab tab = MsgContentUtil.creatTab("系统消息","123456");
-        tab.setOnClosed(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                System.out.println("?");
-//                event.consume();
-            }
-        });
-        Tab tab1 = MsgContentUtil.creatTab("我的名字叫","12345");
-        tabPane.getTabs().addAll(tab,tab1);
+//        Tab tab = MsgContentUtil.creatTab("系统消息","123456");
+//        tab.setOnClosed(new EventHandler<Event>() {
+//            @Override
+//            public void handle(Event event) {
+//                System.out.println("?");
+////                event.consume();
+//            }
+//        });
+//        Tab tab1 = MsgContentUtil.creatTab("我的名字叫","12345");
+//        tabPane.getTabs().addAll(tab,tab1);
         this.setTop(label);
         this.setBottom(tabPane);
     }

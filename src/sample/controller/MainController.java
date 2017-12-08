@@ -4,10 +4,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import sample.StageController;
-import sample.compoment.MVBox;
 import sample.util.ControllerdStage;
-
-import java.util.ArrayList;
 
 /**
  * Created by 马东 on 2017/10/19.
@@ -29,14 +26,14 @@ public class MainController implements ControllerdStage {
         init();
     }
     private void init(){
-        BorderPane borderPane = new BorderPane();
-        MVBox mvBox = new MVBox(360,660);
-        ArrayList<String> strs = new ArrayList<>();
-        for (int i = 0;i< 5; i++){
-            strs.add(i+"");
-        }
-        mvBox.addFreads(strs);
-        borderPane.getChildren().addAll(mvBox);
+//        BorderPane borderPane = new BorderPane();
+//        MVBox mvBox = new MVBox(360,660);
+//        ArrayList<String> strs = new ArrayList<>();
+//        for (int i = 0;i< 5; i++){
+//            strs.add(i+"");
+//        }
+//        mvBox.addFreads(strs);
+//        borderPane.getChildren().addAll(mvBox);
     }
     @Override
     public void setStageController(StageController controller) {

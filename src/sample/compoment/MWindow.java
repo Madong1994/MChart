@@ -1,5 +1,6 @@
 package sample.compoment;
 
+import entity.User;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -67,8 +68,8 @@ public class MWindow extends BorderPane{
         this.setCenter(chatPane);
         this.setRight(label);
     }
-    public void addFriends(List<String> friends){
-        mvBox.addFreads(friends);
+    public void addFriends(List<User> friends){
+        mvBox.addFriends(friends);
     }
 
 }

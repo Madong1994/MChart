@@ -1,5 +1,7 @@
 package sample.util;
 
+import javafx.scene.paint.Paint;
+
 /**
  * Created by 马东 on 2017/11/7.
  *
@@ -13,6 +15,15 @@ public class MsgContent {
     private String sender;
     private String msgType;
     private String content;//信息内容
+    private Paint paint;
+
+    public Paint getPaint() {
+        return paint;
+    }
+
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
 
     public String getSender() {
         return sender;

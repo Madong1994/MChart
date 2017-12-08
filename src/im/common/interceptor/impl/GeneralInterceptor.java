@@ -9,8 +9,8 @@ import org.tio.core.ChannelContext;
 /**
  * Created by 马东 on 2017/8/23.
  */
-public class LoginInterceptor implements BaseInterceptor {
-    private static final Log log = Log.getLog(LoginInterceptor.class);
+public class GeneralInterceptor implements BaseInterceptor {
+    private static final Log log = Log.getLog(GeneralInterceptor.class);
     private Object ocompent = null;
     private String result = "";
     @Override

@@ -5,6 +5,7 @@ import im.common.IMPacket;
 import org.tio.core.ChannelContext;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -33,7 +34,12 @@ public class HandlerInterceptor implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("befor---------->HandlerInterceptor");
         Object ocompemt = interceptor.before((ChannelContext<Object, IMPacket, Object>)args[1]);
-        String resultStr = (String) method.invoke(object,args[0],args[1],ocompemt);
+        String resultStr = null;
+        try {
+            resultStr = (String) method.invoke(object,args[0],args[1],ocompemt);
+        } catch (InvocationTargetException e) {
+            throw e.getCause();
+        }
         interceptor.after((ChannelContext<Object, IMPacket, Object>)args[1],resultStr);
         System.out.println("after---------->HandlerInterceptor"+resultStr);
         return null;
