@@ -1,6 +1,13 @@
 package sample.util;
 
+import com.alibaba.fastjson.JSON;
 import entity.TextMessage;
+import im.common.protof.RequestModel;
+import im.common.util.HandlerCode;
+import im.common.util.RequestCode;
+import im.common.util.tool.DateUtil;
+import im.common.util.tool.IMSend;
+import im.common.util.tool.ProtoBufUtil;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
@@ -36,7 +43,7 @@ public class Assemblys {
     private double width;
     private double height;
 
-    public static void widthAndHeight(double width,double height){
+    public static void widthAndHeight(double width, double height){
         Assemblys.width_static = width;
         Assemblys.height_static = height;
     }
@@ -96,10 +103,9 @@ public class Assemblys {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 MsgContent msgContent = new MsgContent();
-                //todo 缺少发送者
-                msgContent.setSender("me");
+                msgContent.setSender(Me.USER_NUM);
                 msgContent.setContent(msg.getText());
-                msg.clear();
+
                 System.out.println("---"+msg.getText());
                 ObservableList<MsgContent> observableList = MsgContentUtil.getDataMap(userNum);
                 System.out.println(observableList);
@@ -109,10 +115,13 @@ public class Assemblys {
 
                 TextMessage textMessage = new TextMessage();
                 textMessage.setMsgType("TEXT");
-//                textMessage.setMsg();
-                //todo 发送消息没有写
-//                RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.SEND_MSG, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),user.getUserNum());
-//                IMSend.send();
+                textMessage.setSender(Me.USER_NUM);
+                textMessage.setMsg(msg.getText());
+                textMessage.setReceiver(userNum);
+                String json = JSON.toJSONString(textMessage);
+                RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.SEND_MSG, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),json);
+                IMSend.send(imRequest,null);
+                msg.clear();
             }
         });
 

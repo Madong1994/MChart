@@ -18,4 +18,5 @@ public interface ResponseCode {
     public static int RES_LOGIN = 0;//登录响应
 
     int FRENDS = 1;//好友列表
+    public static int RES_SENDMSG = 10;//发送消息响应
 }

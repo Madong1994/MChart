@@ -19,6 +19,7 @@ import org.tio.core.ChannelContext;
 import sample.StageController;
 import sample.compoment.MWindow;
 import sample.controller.LoginController;
+import sample.util.Me;
 import sample.util.Stages;
 
 /**
@@ -38,7 +39,8 @@ public class LoginHandler implements BaseHandler {
             System.out.println("==="+resultMsg.getObject());
             String userJson = resultMsg.getObject();
             User user = JSON.parseObject(userJson,User.class);
-
+            Me.USER_NUM = user.getUserNum();
+            Me.USER_NAME = user.getUserName();
 
             Platform.runLater(new Runnable() {
                 public void run() {

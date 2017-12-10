@@ -69,7 +69,7 @@ public class MVBox extends VBox {
             child.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    Tab tab = MsgContentUtil.creatTab(frends.get(a).getUserName(),frends.get(a).getUserName());
+                    Tab tab = MsgContentUtil.creatTab(frends.get(a).getUserName(),frends.get(a).getUserNum());
                     chatPane.getTabPane().getTabs().add(tab);
                 }
             });

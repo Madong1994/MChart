@@ -12,6 +12,15 @@ package entity;
 public class Message {
     private String sender;
     private String msgType;
+    private String receiver;
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
 
     public String getSender() {
         return sender;

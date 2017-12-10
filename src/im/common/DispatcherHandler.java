@@ -54,9 +54,9 @@ public class DispatcherHandler {
                             return baseHandle1.init(imResponse, channelContext,null);
                         }else {
                             //没有使用拦截器
-                            Method method = impl.getMethod("init", ResponseModel.ImResponse.class, ChannelContext.class);
+                            Method method = impl.getMethod("init", ResponseModel.ImResponse.class, ChannelContext.class,Object.class);
                             Object object = impl.newInstance();
-                            return (String) method.invoke(object, imResponse, channelContext);
+                            return (String) method.invoke(object, imResponse, channelContext,null);
                         }
 
                     } catch (NoSuchMethodException e) {
