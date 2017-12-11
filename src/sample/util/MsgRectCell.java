@@ -1,5 +1,6 @@
 package sample.util;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.VBox;
@@ -34,9 +35,16 @@ public class MsgRectCell extends ListCell<MsgContent> {
         VBox vBox = new VBox();
         vBox.getChildren().addAll(labelSender,labelContext);
         if (msgContent != null) {
-//                rect.setFill(Color.web(item));
-            labelSender.setText(msgContent.getSender());
+//todo 没有显示信息内容
             labelContext.setTextFill(msgContent.getPaint());
+            if(Me.USER_NUM.equals(msgContent.getSender())){
+                labelSender.setAlignment(Pos.BASELINE_RIGHT);
+                labelContext.setAlignment(Pos.BASELINE_RIGHT);
+                labelSender.setText(":"+msgContent.getSendTime()+" "+msgContent.getSender());
+            }else {
+                labelSender.setText(msgContent.getSender()+" "+msgContent.getSendTime()+":");
+            }
+//                rect.setFill(Color.web(item));
             labelContext.setText(msgContent.getContent());
             setGraphic(vBox);
         }

@@ -102,9 +102,12 @@ public class Assemblys {
         sendMsg.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                String sendTime = DateUtil.getDate();
                 MsgContent msgContent = new MsgContent();
                 msgContent.setSender(Me.USER_NUM);
                 msgContent.setContent(msg.getText());
+                msgContent.setSendTime(sendTime);
+
 
                 System.out.println("---"+msg.getText());
                 ObservableList<MsgContent> observableList = MsgContentUtil.getDataMap(userNum);
@@ -115,11 +118,12 @@ public class Assemblys {
 
                 TextMessage textMessage = new TextMessage();
                 textMessage.setMsgType("TEXT");
+                textMessage.setSendTime(sendTime);
                 textMessage.setSender(Me.USER_NUM);
                 textMessage.setMsg(msg.getText());
                 textMessage.setReceiver(userNum);
                 String json = JSON.toJSONString(textMessage);
-                RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.SEND_MSG, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),json);
+                RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.SEND_MSG, HandlerCode.REQUEST,"0","0", DateUtil.getDate(),json);
                 IMSend.send(imRequest,null);
                 msg.clear();
             }

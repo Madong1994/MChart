@@ -41,6 +41,7 @@ public class MsgHandler implements BaseHandler {
                     msgContent.setMsgType(textMessage.getMsgType());
                     msgContent.setContent(textMessage.getMsg());
                     msgContent.setSender(textMessage.getSender());
+                    msgContent.setSendTime(textMessage.getSendTime());
                     msgContent.setPaint(Color.RED);
 
                     msgContents.add(msgContent);

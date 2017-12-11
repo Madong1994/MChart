@@ -1,16 +1,15 @@
 package sample.util;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,6 +32,9 @@ public class MsgContentUtil {
     private Label other;
     private TextArea msg;
 
+    public static Tab getTabMap(String userNum){
+        return tabMap.get(userNum);
+    }
     public static ObservableList<MsgContent> getDataMap(String userNum){
         return dataMap.get(userNum);
     }
@@ -54,7 +56,7 @@ public class MsgContentUtil {
      * 创建tab
      * @param userName
      */
-    public static Tab creatTab(String userName,String userNumber){
+    public static Tab creatTab(final String userName, final String userNumber){
         Tab tab = new Tab();
         tab.setText(userName);
 
@@ -68,6 +70,19 @@ public class MsgContentUtil {
         Assemblys.widthAndHeight(width,height);
         VBox vBox = assemblys.getHbox(width,height,data,userNumber);
         tab.setContent(vBox);
+        if(!"100000".equals(userNumber)){
+            final ObservableList<MsgContent> finalData = data;
+            tab.setOnClosed(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    FileUtils.saveChatRecord(userNumber, finalData);
+                    assemblysMap.remove(userNumber);
+                    tabMap.remove(userNumber);
+                    assemblysMap.remove(userNumber);
+                }
+            });
+        }
+
         tabMap.put(userNumber,tab);
         assemblysMap.put(userNumber,assemblys);
         dataMap.put(userNumber,data);
@@ -80,9 +95,10 @@ public class MsgContentUtil {
      */
     private static ObservableList<MsgContent> gainHistoricalRecord(String userNumber) throws IOException {
 
-        String path = "C:/MChart";
+
+        /*String path = "C:/MChart/"+Me.USER_NUM;
         File filePath = new File(path);
-        File file = new File("C:/MChart/"+userNumber+".txt");
+        File file = new File(path+"/"+userNumber+".txt");
         List<MsgContent> msgContentList = new ArrayList<>();
         if(file.exists()){
 //            FileOutputStream fileOutputStream = new FileOutputStream("C:/MChart/"+userNumber+".txt");
@@ -105,10 +121,11 @@ public class MsgContentUtil {
             String str = null;
             while ((str = bufferedReader.readLine()) != null){
                 System.out.println("--"+str);
-                String[] strings = str.split("：");
+                String[] strings = str.split("：");//
                 MsgContent msgContent = new MsgContent();
                 msgContent.setSender(strings[0]);
-                msgContent.setContent(strings[1]);
+                msgContent.setSendTime(strings[1]);
+                msgContent.setContent(strings[2]);
                 msgContentList.add(msgContent);
             }
         }else {
@@ -118,8 +135,8 @@ public class MsgContentUtil {
                 boolean res = filePath.mkdirs();
             }
         }
-        ObservableList<MsgContent> data = FXCollections.observableArrayList(msgContentList);
-        return data;
+        ObservableList<MsgContent> data = FXCollections.observableArrayList(msgContentList);*/
+        return FileUtils.getMsgRecord(userNumber);
     }
 
     public static void main(String[] args) {

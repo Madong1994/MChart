@@ -1,6 +1,7 @@
 package sample.compoment;
 
 import entity.User;
+import im.common.util.tool.DateUtil;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -69,8 +70,12 @@ public class MVBox extends VBox {
             child.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    Tab tab = MsgContentUtil.creatTab(frends.get(a).getUserName(),frends.get(a).getUserNum());
-                    chatPane.getTabPane().getTabs().add(tab);
+                    Tab userTab = MsgContentUtil.getTabMap(frends.get(a).getUserNum());
+                    if(userTab == null){
+                        Tab tab = MsgContentUtil.creatTab(frends.get(a).getUserName(),frends.get(a).getUserNum());
+                        chatPane.getTabPane().getTabs().add(tab);
+                    }
+
                 }
             });
 //            child.setOpacity(0.4);
@@ -86,12 +91,14 @@ public class MVBox extends VBox {
                 welComeContent.setContent("欢迎使用 马东 编写的聊天系统!");
                 welComeContent.setPaint(Color.LIGHTSEAGREEN);
                 welComeContent.setMsgType("TEXT");
+                welComeContent.setSendTime(DateUtil.getDate());
                 MsgContent content = new MsgContent();
                 content.setSender(frends.get(i).getUserName());
 
                 content.setContent("服务器链接成功!");
                 content.setPaint(Color.RED);
                 content.setMsgType("TEXT");
+                content.setSendTime(DateUtil.getDate());
                 contents.add(content);
                 contents.add(welComeContent);
             }

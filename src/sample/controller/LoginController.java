@@ -33,7 +33,7 @@ public class LoginController implements ControllerdStage {
         boolean us = Pattern.matches("\\d{5,8}",userNum);
         if(us&&pwd != null&& !pwd.equals("")){
             String data = User.toJson(userNum,pwd);
-            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),data);
+            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.LOGIN, HandlerCode.REQUEST,"0","0", DateUtil.getDate(),data);
             GeneralInterceptor generalInterceptor = new GeneralInterceptor();
             generalInterceptor.setOcompent(this);
             IMSend.send(imRequest, generalInterceptor);

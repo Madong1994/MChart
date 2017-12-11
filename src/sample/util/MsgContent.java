@@ -16,6 +16,15 @@ public class MsgContent {
     private String msgType;
     private String content;//信息内容
     private Paint paint;
+    private String sendTime;
+
+    public String getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(String sendTime) {
+        this.sendTime = sendTime;
+    }
 
     public Paint getPaint() {
         return paint;

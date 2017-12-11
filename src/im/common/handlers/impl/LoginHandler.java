@@ -48,7 +48,7 @@ public class LoginHandler implements BaseHandler {
                 }
             });
             /*获得好友列表*/
-            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.GET_FRENDS, HandlerCode.REQUEST,"0","0", DateUtil.dateFactory(),user.getUserNum());
+            RequestModel.ImRequest imRequest = ProtoBufUtil.requestModelFactory(RequestCode.GET_FRENDS, HandlerCode.REQUEST,"0","0", DateUtil.getDate(),user.getUserNum());
             MWindow mWindow = (MWindow) stageController.getPane(Stages.mwindow);
             GeneralInterceptor generalInterceptor = new GeneralInterceptor();
             generalInterceptor.setOcompent(mWindow);
